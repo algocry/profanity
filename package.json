@@ -1,0 +1,25 @@
+{
+  "name": "profanity",
+  "version": "1.0.0",
+  "description": "",
+  "main": "exportData.js",
+  "scripts": {
+    "result": "node getOneResult.js",
+    "export": "node exportData.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0x0is1/profanity.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/0x0is1/profanity/issues"
+  },
+  "homepage": "https://github.com/0x0is1/profanity#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.1",
+    "prompt-sync": "^4.2.0",
+    "xlsx": "^0.18.5"
+  }
+}
