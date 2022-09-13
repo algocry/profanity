@@ -41,8 +41,30 @@ async function fetch_username(reg, lact, act) {
     return resp;
 }
 
+async function fetch_questions(lact, act, q_no) {
+    var url = `${BASEURL}/GetQuestionDetailToDisplay?QuestionId=${q_no}`;
+    var data = await fetch(url, {
+        "headers": headers(lact, act),
+        "method": "GET"
+    });
+    var resp = await data.json();
+    return resp;
+}
+
+async function fetch_options(lact, act, q_no) {
+    var url = `${BASEURL}/GetOptionDetailToDisplay?QuestionId=${q_no}`;
+    var data = await fetch(url, {
+        "headers": headers(lact, act),
+        "method": "GET"
+    });
+    var resp = await data.json();
+    return resp;
+}
+
 module.exports = {
     fetch_attempted,
     fetch_result,
-    fetch_username
+    fetch_username,
+    fetch_questions,
+    fetch_options
 };
