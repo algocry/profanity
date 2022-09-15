@@ -4,8 +4,9 @@
   "description": "",
   "main": "exportData.js",
   "scripts": {
-    "result": "node getOneResult.js",
-    "export": "node exportData.js"
+    "result": "node App.js 2",
+    "export": "node App.js 1",
+    "question": "node App.js 3"
   },
   "repository": {
     "type": "git",
