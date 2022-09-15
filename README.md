@@ -1,5 +1,6 @@
 # Profanity - An Inclusive Exploit
 
+[![NodeJS with Webpack](https://github.com/0x0is1/profanity/actions/workflows/webpack.yml/badge.svg)](https://github.com/0x0is1/profanity/actions/workflows/webpack.yml)
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/0x0is1off@gmail.com)
 ![Version](https://img.shields.io/badge/Version-1.0.1-red)
 ![Deprecation](https://img.shields.io/badge/Deprecation-No-orange)
@@ -13,7 +14,8 @@ The result (`single and multiple both`), which has not been published yet, The q
 ## Result section
 After analyzing and modifying API callings, it has been acknowledged that Data can be accessed without authetication which is (here) two kind of tokens
 - Marks access POC
-![POCSS-1](./resources/POCSS1.png)
+
+![POCSS-1](./src/resources/POCSS1.png)
 
 As you can see there are no other authetication than formal headers and encrypted registration number. (The encryption backtracking was possible just by taking a look in query file).
 
@@ -24,10 +26,12 @@ Same as previous can be access for whole bunch of registration numbers, while in
 All questions and their options is accessible regardless of user's interest or not, just by question id.
 
 - Question Access POC
-![POCSS-2](./resources/POCSS2.png)
+
+![POCSS-2](./src/resources/POCSS2.png)
 
 - Option Access POC
-![POCSS-3](./resources/POCSS3.png)
+
+![POCSS-3](./src/resources/POCSS3.png)
 
 *It is often believed that the timer and even whole tests happening on this platform can be simulated. (Not proved technically yet)*
 
