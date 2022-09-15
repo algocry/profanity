@@ -6,7 +6,8 @@
   "scripts": {
     "result": "node App.js 2",
     "export": "node App.js 1",
-    "question": "node App.js 3"
+    "question": "node App.js 3",
+    "test": "node tests/test1.js"
   },
   "repository": {
     "type": "git",
