@@ -77,10 +77,6 @@ We do not promote any harmful usage of this exploit. This is just a proof of con
 ### **Support authors**:
 We are group of indie developers and testers, working for open source. Your tiny help can boost us to provide more good works for everyone for free.
 Thank you.
-![Version](https://img.shields.io/badge/Version-1.0.1-red)
-![Version](https://img.shields.io/badge/Version-1.0.1-red)
-![Deprecation](https://img.shields.io/badge/Deprecation-No-orange)
-
 
 [![Donate](https://raw.githubusercontent.com/0x0is1/inproject-asset-container/master//default-pink.png)](https://www.buymeacoffee.com/6dciIwk)
 
