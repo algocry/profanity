@@ -69,8 +69,8 @@ loginHandler.login(registrat, passw, 330).then(data => {
         getUsers(euid, 0, cid, lact, act).then(udata => {
             getUsers(euid, 50, cid, lact, act).then(u2data => {
                 var reg_no = udata.data.chat_members[0].email;
-                parseOAS.fetch_attempted(reg_no, lact, act).then(async data => {
-                    await parseOAS.fetch_username(reg_no, lact, act).then(async un_data => {
+                parseOAS.fetch_attempted(reg_no).then(async data => {
+                    await parseOAS.fetch_username(reg_no).then(async un_data => {
                         console.log(`Name: ${un_data}`);
                         for (var [i, j] of data.entries()) {
                             console.log(`[${i + 1}] ${j.TestName}`);
@@ -81,9 +81,8 @@ loginHandler.login(registrat, passw, 330).then(data => {
                             if (i.role !== "ADMIN") {
                                 var re_no = i.email;
                                 var full_name = i.full_name.split(" : ")[0];
-                                await parseOAS.fetch_attempted(re_no, lact, act).then(async data => {
                                     try {
-                                        await parseOAS.fetch_result(course_id, re_no, lact, act).then(async redata => {
+                                        await parseOAS.fetch_result(course_id, re_no).then(async redata => {
                                             if (redata[0].Message == "Success") {
                                                 data_container.push(
                                                     {
@@ -98,16 +97,14 @@ loginHandler.login(registrat, passw, 330).then(data => {
                                         });
                                     }
                                     catch (e) { }
-                                });
                             }
                         }
                         for (let j of u2data.data.chat_members) {
                             if (j.role !== "ADMIN") {
                                 var re_no = j.email;
                                 var full_name = j.full_name.split(" : ")[0];
-                                await parseOAS.fetch_attempted(re_no, lact, act).then(async data => {
                                     try {
-                                        await parseOAS.fetch_result(course_id, re_no, lact, act).then(async redata => {
+                                        await parseOAS.fetch_result(course_id, re_no).then(async redata => {
                                             if (redata[0].Message == "Success") {
                                                 data_container.push(
                                                     {
@@ -122,7 +119,7 @@ loginHandler.login(registrat, passw, 330).then(data => {
                                         });
                                     }
                                     catch (e) { }
-                                });
+                                
                             }
                         }
                         export2excel(`${data[selid - 1].TestName}.xlsx`, data_container)
