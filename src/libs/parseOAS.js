@@ -21,7 +21,8 @@ async function fetch_attempted(reg) {
 }
 
 async function fetch_result(tid, reg) {
-    var url = `${BASEURL}/GetTestDetailForResultAnalysis?EncTestId=${encodeURI(encd(tid))}&LoginId=${encodeURI(encd(reg))}`;
+    var url = `${BASEURL}/GetTestDetailForResultAnalysis?EncTestId=${encodeURIComponent(encd(tid))}&LoginId=${encodeURIComponent(encd(reg))}`;
+
     var data = await fetch(url, {
         "headers": headers(),
         "method": "GET"
@@ -31,7 +32,7 @@ async function fetch_result(tid, reg) {
 }
 
 async function fetch_username(reg) {
-    var url = `${BASEURL}/GetUserName?LoginId=${encodeURI(encd(reg))}`;
+    var url = `${BASEURL}/GetUserName?LoginId=${encodeURIComponent(encd(reg))}`;
     var data = await fetch(url, {
         "headers": headers(),
         "method": "GET"
