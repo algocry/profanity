@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
-eval(require('fs').readFileSync('./src/libs/encryptHandler.js', 'utf8'));
+const encd = require('./encryptHandler').encd;
+
 const BASEURL = 'https://oas.lpu.in/api/OnlineExam';
 
 const headers = () => {
@@ -61,10 +62,31 @@ async function fetch_options(q_no) {
     return resp;
 }
 
+async function fetch_2attempt(reg) {
+    var url = `${BASEURL}/GetTestToAttemptDetail?RoleId=3&LoginId=${reg}`;
+    var data = await fetch(url, {
+        "headers": headers(),
+        "method": "GET"
+    });
+    var resp = await data.json();
+    return resp;
+}
+
+async function fetch_qids(test_id, set_idx = 1) {
+    var url = `${BASEURL}/GetQuestionNumbersDetail?TestId=${test_id}&Set=${set_idx}&LoginId=null`;
+    var data = await fetch(url, {
+        "headers": headers(),
+        "method": "GET"
+    });
+    var resp = await data.json();
+    return resp;
+}
 module.exports = {
     fetch_attempted,
     fetch_result,
     fetch_username,
     fetch_questions,
-    fetch_options
+    fetch_options,
+    fetch_2attempt,
+    fetch_qids
 };
