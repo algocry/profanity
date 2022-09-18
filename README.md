@@ -22,16 +22,20 @@ As you can see there are no other authetication than formal headers and encrypte
 ## Complete Section Result section
 Same as previous can be access for whole bunch of registration numbers, while in the exploit, getting accessed through Vendor's chat API (another platform API of the same vendor) and writing into a Excel file.
 
-## Questions and Options section
+## Test paper section
 All questions and their options is accessible regardless of user's interest or not, just by question id.
+
+- Questions Sequence detail Access POC
+
+![POCSS-2](./src/resources/POCSS4.png)
 
 - Question Access POC
 
-![POCSS-2](./src/resources/POCSS2.png)
+![POCSS-3](./src/resources/POCSS2.png)
 
-- Option Access POC
+- Option Access POC  (and hence complete test paper is accessible)
 
-![POCSS-3](./src/resources/POCSS3.png)
+![POCSS-4](./src/resources/POCSS3.png)
 
 *It is often believed that the timer and even whole tests happening on this platform can be simulated. (Not proved technically yet)*
 
@@ -41,21 +45,19 @@ A valid authetication of API with mock access tokens being used, can save all th
 # Usage
 
 ## Requirements
-- node-js
-- git
+- [node-js](https://nodejs.org/en/download/)
+- [git](https://git-scm.com/downloads)
 - node-fetch (`2.6.1`) **same version important**
 - prompt-sync (`4.2.0`)
 - xlsx (`0.18.5`)
-
+- uuid (`9.0.0`)
 ## Installation
 *Note: If node is installed, it works for every operating system*
 
-***Open cmd and write following:***
+***Open cmd or terminal (Linux users) and write following:***
 ```sh
 $ git clone https://github.com/0x0is1/profanity.git
-
 $ cd profanity
-
 $ npm install
 ```
 
