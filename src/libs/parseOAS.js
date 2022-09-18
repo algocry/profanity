@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const encd = require('./encryptHandler').encd;
 
-const BASEURL = 'https://oas.lpu.in/api/OnlineExam';
+const BASEURL = Buffer.from('aHR0cHM6Ly9vYXMubHB1LmluL2FwaS9PbmxpbmVFeGFt', 'base64').toString('ascii');
 
 const headers = () => {
     return {
