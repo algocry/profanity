@@ -1,14 +1,4 @@
-const AUTH_API_URL_LPU = "https://lpulive.lpu.in/fugu-api/api";
-const GHP_BASE_API_URL = "https://api.github.com";
-
-class GHPPaths {
-    constructor(username) {
-        this.user = `/users/${username}`;
-        this.repos = `/users/${username}/repos?per_page=100`;
-        this.orgs = `/users/${username}/orgs`;
-        this.reposPriv = `/repos/${username}`;
-    }
-};
+const AUTH_API_URL_LPU = Buffer.from('aHR0cHM6Ly9scHVsaXZlLmxwdS5pbi9mdWd1LWFwaS9hcGk=', 'base64').toString('ascii');
 
 class Urls {
     constructor() {
@@ -25,10 +15,9 @@ var headers = {
     "content-type": "application/json",
     "device_type": "WEB",
 };
+
 module.exports = {
     AUTH_API_URL_LPU,
     Urls,
-    headers,
-    GHP_BASE_API_URL,
-    GHPPaths
+    headers
 };
