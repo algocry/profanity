@@ -81,6 +81,17 @@ async function fetch_qids(test_id, set_idx = 1) {
     var resp = await data.json();
     return resp;
 }
+
+async function fetch_answers(test_id, login_id = 12114480) {
+    var url = `${BASEURL}/GetResultDetailsForAnalysis?EncTestId=${encodeURIComponent(encd(test_id))}&LoginId=${encodeURIComponent(encd(login_id))}`;
+    var data = await fetch(url, {
+        "headers": headers(),
+        "method": "GET"
+    });
+    var resp = await data.json();
+    return resp;
+}
+
 module.exports = {
     fetch_attempted,
     fetch_result,
@@ -88,5 +99,6 @@ module.exports = {
     fetch_questions,
     fetch_options,
     fetch_2attempt,
-    fetch_qids
+    fetch_qids,
+    fetch_answers
 };

@@ -64,6 +64,19 @@ var stylesheet = `
         .qbox .obox .opt{
             padding: 15px;
         }
+
+        .c_answer {
+            margin: 5px;
+            font-size: 15px;
+        }
+
+        .c_answer b{
+            font-style: normal;
+            border-radius: 10px;
+            background: grey;
+            padding: 5px;
+            color: white;
+        }
 `;
 var basic_html = `<html><head><title>Profanity</title><style>${stylesheet}</style></head><body>`;
 
@@ -97,7 +110,7 @@ async function getQuestions(regs = 12114480) {
             for (let [qid_idx, qid_data] of qids_data.entries()) {
                 qid = qid_data.QuestionId;
                 await parseOAS.fetch_questions(qid).then(async dataq => {
-                    await parseOAS.fetch_options(qid).then(data_ => {
+                    await parseOAS.fetch_options(qid).then(async data_ => {
                         basic_html += `<div class="qbox" id="${dataq[0].QuestionId}"><span class="qno"><i>Question (${qid_idx + 1})</i></span>`;
                         if (dataq[0].ParagraphText != '') {
                             basic_html += `<span class="para">${dataq[0].ParagraphText}</span>`;
@@ -118,9 +131,18 @@ async function getQuestions(regs = 12114480) {
                             }
                             basic_html += `</div>`;
                         }
-                        basic_html += `</div>`;
+                        var answer = "Not Available";
+                        await parseOAS.fetch_answers(test_id = test_id, reg).then(async ans_data => {
+                            try {
+                                answer = ans_data[qid_idx].RightOption;
+                            }
+                            catch (e) {
+                                answer = "Not Available";
+                            }
+                        });
+                        basic_html += `<div class="c_answer">Correct Answer: <b>${answer}</b></div></div>`;
                     });
-                });                
+                });      
             }
             basic_html += `</body></html>`;
             if (regs === null) {
