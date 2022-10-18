@@ -51,7 +51,7 @@ function export2excel(filename, data) {
 async function exportData(tem=1) {
     if (tem === null) {
         var registrat = prompt('Enter Your registration number: ');
-        var passw = prompt('Enter your password: ');
+        var passw = prompt.hide('Enter your password: ');
     }
     else {
         return;
