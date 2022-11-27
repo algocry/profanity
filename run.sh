@@ -10,6 +10,9 @@ fi
 echo "1. Get one result"
 echo "2. Get all results"
 echo "3. Get Question Paper"
+echo "4. End test"
+echo "5. Get Answer"
+
 read -p "Select action: " input
 if [ "$input" == "1" ]; then
     npm run result
@@ -19,6 +22,12 @@ elif [ "$input" == "2" ]; then
 
 elif [ "$input" == "3" ]; then
     npm run question
+
+elif [ "$input" == "4" ]; then
+    npm run end
+
+elif [ "$input" == "5" ]; then
+    npm run answer
 else
     echo "Wrong option selected"
 fi

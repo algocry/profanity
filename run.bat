@@ -10,6 +10,9 @@ if exist node_modules\ (
 echo 1. Get one result
 echo 2. Get all results
 echo 3. Get Question Paper
+echo 4. End test
+echo 5. Get answer
+
 set /p input=Select action: 
 if %input%==1 (
     npm run result
@@ -21,6 +24,14 @@ if %input%==2 (
 ) 
 if %input%==3 (
     npm run question
+    pause
+)
+if %input%==4 (
+    npm run end
+    pause
+)
+if %input%==5 (
+    npm run answer
     pause
 ) else (
     echo Wrong option selected
