@@ -22,7 +22,7 @@ async function getAnswer(rno) {
             else selid = 1;
 
             var set = prompt('Enter set number: ');
-            var attempt4me = prompt("Attempt this test for you? [y/n]: ")
+            var attempt4me = parseInt(prompt("Attempt this test for you? [y/n]: "));
             if (attempt4me != "y") {
                 reg_no = 12114441; // reg no to attempt, retired ofcourse
             }
@@ -30,9 +30,9 @@ async function getAnswer(rno) {
             var currScore = 0;
 
             // getting current score
-            await parseOAS.fetch_result(tid, reg_no).then(redata => {
-                currScore = parseInt(redata[0].MarksObtained);
-            });
+            //await parseOAS.fetch_result(tid, reg_no).then(redata => {
+                //currScore = parseInt(redata[0].MarksObtained);
+            //});
     
             await parseOAS.fetch_qids(tid, set).then(async qiddata => { 
                 for (let [idx, i] of qiddata.entries()) {
