@@ -45,7 +45,7 @@ async function getAnswer(rno) {
                                         currScore = parseInt(redata[0].MarksObtained);
                                         answers[idx] = j.OptionDescription;
                                         correctOpFound = true;
-                                        console.log(idx, j.OptionDescription)
+                                        //console.log(idx, j.OptionDescription)
                                     }
                                 });
                             });
