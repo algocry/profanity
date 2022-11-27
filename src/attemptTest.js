@@ -22,7 +22,7 @@ async function getAnswer(rno) {
             else selid = 1;
 
             var set = prompt('Enter set number: ');
-            var attempt4me = parseInt(prompt("Attempt this test for you? [y/n]: "));
+            var attempt4me = prompt("Attempt this test for you? [y/n]: ");
             if (attempt4me != "y") {
                 reg_no = 12114441; // reg no to attempt, retired ofcourse
             }
