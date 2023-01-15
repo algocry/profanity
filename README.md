@@ -37,8 +37,12 @@ All questions and their options is accessible regardless of user's interest or n
 
 ![POCSS-4](./src/resources/POCSS3.png)
 
-*It is often believed that the timer and even whole tests happening on this platform can be simulated. (Not proved technically yet)*
+- Answer access and auto-attempt
 
+Answer can be gussed by continuos marks tracking along with change in option.
+This will lead to accurate correct option access.
+This will also lead to auto-attempt paper for the provided user, but we may skip this step by using random registration numbers.
+Commits responsible- [`e4ae17d`](https://github.com/0x0is1/profanity/commit/0dbab9e9d6697204902bfecf7a61fbf84e4ae17d) [`ab57467`](https://github.com/0x0is1/profanity/commit/03306df204f1ad69747267efae92f54c8ab57467) [`4ddd0de`](https://github.com/0x0is1/profanity/commit/ed0ffa1c461cca8874ca7d100b1e9301c4ddd0de)
 # Suggested FIX
 A valid authetication of API with mock access tokens being used, can save all these leaks.
 
