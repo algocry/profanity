@@ -58,10 +58,26 @@ A valid authetication of API with mock access tokens being used, can save all th
 - xlsx (`0.18.5`)
 - uuid (`9.0.0`)
 ## Installation
-*Note: If node is installed, it works for every operating system*
-
-***Open cmd or terminal (Linux users) and write following:***
+### Windows (cmd or powershell)
 ```sh
+$ winget install -e --id OpenJS.NodeJS
+$ winget install -e --id Git.Git
+$ git clone https://github.com/0x0is1/profanity.git
+$ cd profanity
+$ npm install
+```
+
+### Linux (terminal)
+```sh
+$ sudo apt-get install nodejs git -y
+$ git clone https://github.com/0x0is1/profanity.git
+$ cd profanity
+$ npm install
+```
+
+### MacOS (terminal)
+```sh
+$ brew install node git
 $ git clone https://github.com/0x0is1/profanity.git
 $ cd profanity
 $ npm install
@@ -81,6 +97,10 @@ $ npm run export
 # for questions
 ## no authetication required
 $ npm run question
+
+# for answers
+## no authentication required
+$ npm run answer
 ```
 
 # Disclaimer
