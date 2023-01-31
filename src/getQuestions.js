@@ -1,12 +1,19 @@
 const parseOAS = require("./libs/parseOAS");
 const prompt = require("prompt-sync")({ sigint: true });
-const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
+var html_to_pdf = require('html-pdf-node');
+const fs = require('fs');
 
-const writeData = (fname, data) => fs.appendFile(fname, data, err => {
-    if (err) return console.log(err);
-    console.log(`File is saved as ${fname}`);
-});
+const writeData = (fname, data) => { 
+    let options = { format: 'A4' };
+    let file = { content: data };
+    html_to_pdf.generatePdf(file, options).then(pdfBuffer => {
+        fs.writeFileSync(fname, pdfBuffer, "binary");
+        console.log("File is saved as ", fname);
+    });
+}
+
+
 var stylesheet = `        
         
         body{
@@ -78,7 +85,8 @@ var stylesheet = `
             color: white;
         }
 `;
-var basic_html = `<html><head><title>Profanity</title><style>${stylesheet}</style></head><body>`;
+
+var htmlBoilerPlate = `<html><head><title>Profanity</title><style>${stylesheet}</style></head><body>`;
 
 async function getQuestions(regs = 12114480) {
     if (regs === null) {
@@ -111,25 +119,25 @@ async function getQuestions(regs = 12114480) {
                 qid = qid_data.QuestionId;
                 await parseOAS.fetch_questions(qid).then(async dataq => {
                     await parseOAS.fetch_options(qid).then(async data_ => {
-                        basic_html += `<div class="qbox" id="${dataq[0].QuestionId}"><span class="qno"><i>Question (${qid_idx + 1})</i></span>`;
+                        htmlBoilerPlate += `<div class="qbox" id="${dataq[0].QuestionId}"><span class="qno"><i>Question (${qid_idx + 1})</i></span>`;
                         if (dataq[0].ParagraphText != '') {
-                            basic_html += `<span class="para">${dataq[0].ParagraphText}</span>`;
+                            htmlBoilerPlate += `<span class="para">${dataq[0].ParagraphText}</span>`;
                         }
                         if (dataq[0].QuestionDescription != '') {
-                            basic_html += `<span class="que">${dataq[0].QuestionDescription}</span>`;
+                            htmlBoilerPlate += `<span class="que">${dataq[0].QuestionDescription}</span>`;
                         }
                         if (dataq[0].QuestionImage != '') {
-                            basic_html += `<span class="qimg"><img src="data:image/jpeg;base64,${dataq[0].QuestionImage}"></img></span>`;
+                            htmlBoilerPlate += `<span class="qimg"><img src="data:image/jpeg;base64,${dataq[0].QuestionImage}"></img></span>`;
                         }
                         for (let [option_idx, option_data] of data_.entries()) {
-                            basic_html += `<div class="obox" id="${option_data.OptionId}"><span class="ono"><i>${'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[option_idx]}</i></span>`;
+                            htmlBoilerPlate += `<div class="obox" id="${option_data.OptionId}"><span class="ono"><i>${'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[option_idx]}</i></span>`;
                             if (option_data.OptionDescription != '') {
-                                basic_html += `<span class="opt">${option_data.OptionDescription}</span>`;
+                                htmlBoilerPlate += `<span class="opt">${option_data.OptionDescription}</span>`;
                             }
                             if (option_data.OptionImage != '') {
-                                basic_html += `<span class="oimg"><img src="data:image/jpeg;base64,${option_data.OptionImage}"></img></span>`;
+                                htmlBoilerPlate += `<span class="oimg"><img src="data:image/jpeg;base64,${option_data.OptionImage}"></img></span>`;
                             }
-                            basic_html += `</div>`;
+                            htmlBoilerPlate += `</div>`;
                         }
                         var answer = "Not Available";
                         await parseOAS.fetch_answers(test_id = test_id, reg).then(async ans_data => {
@@ -140,17 +148,18 @@ async function getQuestions(regs = 12114480) {
                                 answer = "Not Available";
                             }
                         });
-                        basic_html += `<div class="c_answer">Correct Answer: <b>${answer}</b></div></div>`;
+                        htmlBoilerPlate += `<div class="c_answer">Correct Answer: <b>${answer}</b></div></div>`;
                     });
                 });      
             }
-            basic_html += `</body></html>`;
+            htmlBoilerPlate += `</body></html>`;
             if (regs === null) {
-                writeData(`${test_id}-${uuidv4()}.html`, basic_html);
+                writeData(`${test_id}-${uuidv4()}.pdf`, htmlBoilerPlate);
             }
         });
     });
 }
+
 module.exports = {
     getQuestions
 }
