@@ -1,22 +1,24 @@
 {
   "name": "profanity",
-  "version": "1.0.0",
-  "description": "",
-  "main": "exportData.js",
+  "version": "1.0.1",
+  "description": "An Inclusive Exploit for OAS",
+  "main": "App.js",
   "scripts": {
     "result": "node App.js 2",
     "export": "node App.js 1",
     "question": "node App.js 3",
     "end": "node App.js 4",
     "answer": "node App.js 5",
-    "test": "node tests/test1.js"
+    "answern": "node App.js 6",
+    "test": "node tests/test1.js",
+    "clean": "rm *.pdf *.xlsx"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/0x0is1/profanity.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "0x0is1",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/0x0is1/profanity/issues"
   },
@@ -25,6 +27,7 @@
     "node-fetch": "^2.6.1",
     "prompt-sync": "^4.2.0",
     "xlsx": "^0.18.5",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "html-pdf-node": "^1.0.8"
   }
 }
