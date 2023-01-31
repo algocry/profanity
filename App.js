@@ -24,6 +24,9 @@ switch (parseInt(process.argv[2])) {
     case 5:
         anst.getAnswer(null);
         break;
+    case 6:
+        anst.getAnswerNNA(null);
+        break;
     default:
         console.log("Wrong option selected.")
 }
