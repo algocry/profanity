@@ -43,6 +43,10 @@ Answers can be obtained by continuous marks tracking along with change in option
 This will lead to accurate correct option access.
 This will also lead to auto-attempt paper for the provided user, but we may skip this step by using random registration numbers.
 
+## Question navigation not allowed module
+
+Question Navigation not allowed is really a tough cookie as we can not modify the answer after checking result of current registration number, so we can use temproary registration number (1 reg for 1 option fill and check) and that's how we can break this trick also.
+
 Commits responsible- [`e4ae17d`](https://github.com/0x0is1/profanity/commit/0dbab9e9d6697204902bfecf7a61fbf84e4ae17d) [`ab57467`](https://github.com/0x0is1/profanity/commit/03306df204f1ad69747267efae92f54c8ab57467) [`4ddd0de`](https://github.com/0x0is1/profanity/commit/ed0ffa1c461cca8874ca7d100b1e9301c4ddd0de)
 
 # Suggested FIX
@@ -101,6 +105,10 @@ $ npm run question
 # for answers
 ## no authentication required
 $ npm run answer
+
+# for answers
+## no authentication required
+$ npm run answern
 ```
 
 # Disclaimer
