@@ -107,55 +107,56 @@ async function getQuestions(regs = 12114480) {
         }
         if (regs === null) {
             var test_idx = prompt("Select test to get questions: ");
-            var set = prompt("Select set number(default: 1): ") | 1;
         }
         else {
             var test_idx = 1;
-            var set = 1;
         }
         var test_id = test_ids[parseInt(test_idx - 1)];
-        await parseOAS.fetch_qids(test_id, parseInt(set)).then(async qids_data => {
-            for (let [qid_idx, qid_data] of qids_data.entries()) {
-                qid = qid_data.QuestionId;
-                await parseOAS.fetch_questions(qid).then(async dataq => {
-                    await parseOAS.fetch_options(qid).then(async data_ => {
-                        htmlBoilerPlate += `<div class="qbox" id="${dataq[0].QuestionId}"><span class="qno"><i>Question (${qid_idx + 1})</i></span>`;
-                        if (dataq[0].ParagraphText != '') {
-                            htmlBoilerPlate += `<span class="para">${dataq[0].ParagraphText}</span>`;
-                        }
-                        if (dataq[0].QuestionDescription != '') {
-                            htmlBoilerPlate += `<span class="que">${dataq[0].QuestionDescription}</span>`;
-                        }
-                        if (dataq[0].QuestionImage != '') {
-                            htmlBoilerPlate += `<span class="qimg"><img src="data:image/jpeg;base64,${dataq[0].QuestionImage}"></img></span>`;
-                        }
-                        for (let [option_idx, option_data] of data_.entries()) {
-                            htmlBoilerPlate += `<div class="obox" id="${option_data.OptionId}"><span class="ono"><i>${'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[option_idx]}</i></span>`;
-                            if (option_data.OptionDescription != '') {
-                                htmlBoilerPlate += `<span class="opt">${option_data.OptionDescription}</span>`;
+        await parseOAS.fetchSet(test_id, reg).then(async setData => {
+            const set = JSON.parse(setData)[0].SetNo;
+            await parseOAS.fetch_qids(test_id, parseInt(set)).then(async qids_data => {
+                for (let [qid_idx, qid_data] of qids_data.entries()) {
+                    qid = qid_data.QuestionId;
+                    await parseOAS.fetch_questions(qid).then(async dataq => {
+                        await parseOAS.fetch_options(qid).then(async data_ => {
+                            htmlBoilerPlate += `<div class="qbox" id="${dataq[0].QuestionId}"><span class="qno"><i>Question (${qid_idx + 1})</i></span>`;
+                            if (dataq[0].ParagraphText != '') {
+                                htmlBoilerPlate += `<span class="para">${dataq[0].ParagraphText}</span>`;
                             }
-                            if (option_data.OptionImage != '') {
-                                htmlBoilerPlate += `<span class="oimg"><img src="data:image/jpeg;base64,${option_data.OptionImage}"></img></span>`;
+                            if (dataq[0].QuestionDescription != '') {
+                                htmlBoilerPlate += `<span class="que">${dataq[0].QuestionDescription}</span>`;
                             }
-                            htmlBoilerPlate += `</div>`;
-                        }
-                        var answer = "Not Available";
-                        await parseOAS.fetch_answers(test_id = test_id, reg).then(async ans_data => {
-                            try {
-                                answer = ans_data[qid_idx].RightOption;
+                            if (dataq[0].QuestionImage != '') {
+                                htmlBoilerPlate += `<span class="qimg"><img src="data:image/jpeg;base64,${dataq[0].QuestionImage}"></img></span>`;
                             }
-                            catch (e) {
-                                answer = "Not Available";
+                            for (let [option_idx, option_data] of data_.entries()) {
+                                htmlBoilerPlate += `<div class="obox" id="${option_data.OptionId}"><span class="ono"><i>${'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[option_idx]}</i></span>`;
+                                if (option_data.OptionDescription != '') {
+                                    htmlBoilerPlate += `<span class="opt">${option_data.OptionDescription}</span>`;
+                                }
+                                if (option_data.OptionImage != '') {
+                                    htmlBoilerPlate += `<span class="oimg"><img src="data:image/jpeg;base64,${option_data.OptionImage}"></img></span>`;
+                                }
+                                htmlBoilerPlate += `</div>`;
                             }
+                            var answer = "Not Available";
+                            await parseOAS.fetch_answers(test_id = test_id, reg).then(async ans_data => {
+                                try {
+                                    answer = ans_data[qid_idx].RightOption;
+                                }
+                                catch (e) {
+                                    answer = "Not Available";
+                                }
+                            });
+                            htmlBoilerPlate += `<div class="c_answer">Correct Answer: <b>${answer}</b></div></div>`;
                         });
-                        htmlBoilerPlate += `<div class="c_answer">Correct Answer: <b>${answer}</b></div></div>`;
                     });
-                });      
-            }
-            htmlBoilerPlate += `</body></html>`;
-            if (regs === null) {
-                writeData(`${test_id}-${uuidv4()}.pdf`, htmlBoilerPlate);
-            }
+                }
+                htmlBoilerPlate += `</body></html>`;
+                if (regs === null) {
+                    writeData(`${test_id}-${uuidv4()}.pdf`, htmlBoilerPlate);
+                }
+            });
         });
     });
 }
