@@ -2,7 +2,7 @@ const dexp = require("./src/exportData");
 const oneres = require("./src/getOneResult");
 const que = require("./src/getQuestions");
 const endt = require("./src/endTest");
-const anst = require("./src/attemptTest");
+const anst = require("./src/getAnswer");
 
 
 console.log("Profanity v1.0.1");
