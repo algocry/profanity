@@ -142,6 +142,15 @@ async function attemptQuestion(test_id, login_id = 12114480, set = 1, question_i
     return resp;
 }
 
+async function fetchSet(test_id, login_id) {
+    let response = await fetch(`${BASEURL}/GetTestSetToAttemptDetail?TestId=${test_id}&LoginId=${login_id}`, {
+        method: "GET",
+        headers: headers()
+    });
+    let data = await response.text();
+    return data;
+}
+
 module.exports = {
     fetch_attempted,
     fetch_result,
@@ -153,5 +162,6 @@ module.exports = {
     fetch_answers,
     fetch_testStatus,
     fetch_endTest,
-    attemptQuestion
+    attemptQuestion,
+    fetchSet
 };
