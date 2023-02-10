@@ -11,7 +11,8 @@ echo "1. Get one result"
 echo "2. Get all results"
 echo "3. Get Question Paper"
 echo "4. End test"
-echo "5. Get Answer"
+echo "5. Get Answer (Question Navigation allowed)"
+echo "6. Get Answer (Question Navigation not allowed)"
 
 read -p "Select action: " input
 if [ "$input" == "1" ]; then
@@ -28,6 +29,10 @@ elif [ "$input" == "4" ]; then
 
 elif [ "$input" == "5" ]; then
     npm run answer
+
+elif [ "$input" == "6" ]; then
+    npm run answern
+
 else
     echo "Wrong option selected"
 fi

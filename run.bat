@@ -11,7 +11,8 @@ echo 1. Get one result
 echo 2. Get all results
 echo 3. Get Question Paper
 echo 4. End test
-echo 5. Get answer
+echo 5. Get answer - question navigation allowed
+echo 6. Get answer - question navigation not allowed
 
 set /p input=Select action: 
 if %input%==1 (
@@ -32,6 +33,10 @@ if %input%==4 (
 )
 if %input%==5 (
     npm run answer
+    pause
+)
+if %input%==6 (
+    npm run answern
     pause
 ) else (
     echo Wrong option selected
