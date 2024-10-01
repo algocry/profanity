@@ -48,13 +48,16 @@ function export2excel(filename, data) {
         console.log(e);
     }
 }
-async function exportData(tem=1) {
+async function exportData(tpw, tem=1) {
+    let registrat;
+    let passw;
     if (tem === null) {
-        var registrat = prompt('Enter Your registration number: ');
-        var passw = prompt.hide('Enter your password: ');
+        registrat = prompt('Enter Your registration number: ');
+        passw = prompt.hide('Enter your password: ');
     }
     else {
-        return;
+        registrat = tem;
+        passw = tpw;
     }
     
     await loginHandler.login(registrat, passw, 330).then(async data => {

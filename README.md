@@ -3,13 +3,16 @@
 [![NodeJS with Webpack](https://github.com/0x0is1/profanity/actions/workflows/webpack.yml/badge.svg)](https://github.com/0x0is1/profanity/actions/workflows/webpack.yml)
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/0x0is1off@gmail.com)
 ![Version](https://img.shields.io/badge/Version-1.0.1-red)
-![Deprecation](https://img.shields.io/badge/Deprecation-Yes-orange)
+![Deprecation](https://img.shields.io/badge/Deprecation-No-green)
 
 ```js
 [18-03-2023]
 ISSUE HAS BEEN DISCLOSED AND FIXED BY VENDOR
 THIS EXPLOIT DOES NOT AFFECT THE VENDOR ANYMORE
 SO MAKING IT PUBLIC
+[25-09-2024]
+REVIVING THIS PROJECT WITH AUTHENTICATION
+AND USERS RESPONSBILITY
 ```
 This repository contains exploit for bug in Authetication and API Access of the affected platform. This exploit has been released without the original vendor's prior knowledege as of now.
 

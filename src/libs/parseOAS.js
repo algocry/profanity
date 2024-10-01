@@ -1,13 +1,15 @@
 const fetch = require('node-fetch');
 const encd = require('./encryptHandler').encd;
-
+const fs = require('fs')
 const BASEURL = Buffer.from('aHR0cHM6Ly9vYXMubHB1LmluL2FwaS9PbmxpbmVFeGFt', 'base64').toString('ascii');
 
 const headers = () => {
+    const oasToken = fs.readFileSync('./src/creds/token.txt', { encoding: 'utf8', flag: 'r' })
     return {
         "content-type": "application/json; charset=utf-8",
         "x-requested-with": "XMLHttpRequest",
         "Referer": BASEURL,
+        "cookie": `ASP.NET_SessionId=a; OASvalue=${oasToken}`,
     }
 };
 

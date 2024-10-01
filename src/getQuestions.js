@@ -91,13 +91,12 @@ var htmlBoilerPlate = `<html><head><title>Profanity</title><style>${stylesheet}<
 async function getQuestions(regs = 12114480) {
     if (regs === null) {
         var reg = prompt('Enter registration number to get tests: ') | regs;
-        console.log("[1] From Attempted\n[2] To attempt")
-        var fun_idx = prompt("Select from which category you want to access tests (Default: 1): ")
     }
     else {
-        var fun_idx = 1;
         var reg = regs;
     }
+    console.log("[1] From Attempted\n[2] To attempt")
+    var fun_idx = prompt("Select from which category you want to access tests (Default: 1): ")
     var fun2exec = [parseOAS.fetch_attempted, parseOAS.fetch_2attempt][parseInt(fun_idx) - 1];
     var test_ids = [];
     await fun2exec(reg).then(async data => {
@@ -105,12 +104,7 @@ async function getQuestions(regs = 12114480) {
             console.log(`[${t_idx+1}] ${test.TestName}`);
             test_ids.push(test.TestId);
         }
-        if (regs === null) {
-            var test_idx = prompt("Select test to get questions: ");
-        }
-        else {
-            var test_idx = 1;
-        }
+        var test_idx = prompt("Select test to get questions: ");
         var test_id = test_ids[parseInt(test_idx - 1)];
         await parseOAS.fetchSet(test_id, reg).then(async setData => {
             const set = JSON.parse(setData)[0].SetNo;
@@ -140,22 +134,12 @@ async function getQuestions(regs = 12114480) {
                                 htmlBoilerPlate += `</div>`;
                             }
                             var answer = "Not Available";
-                            await parseOAS.fetch_answers(test_id = test_id, reg).then(async ans_data => {
-                                try {
-                                    answer = ans_data[qid_idx].RightOption;
-                                }
-                                catch (e) {
-                                    answer = "Not Available";
-                                }
-                            });
                             htmlBoilerPlate += `<div class="c_answer">Correct Answer: <b>${answer}</b></div></div>`;
                         });
                     });
                 }
                 htmlBoilerPlate += `</body></html>`;
-                if (regs === null) {
-                    writeData(`${test_id}-${uuidv4()}.pdf`, htmlBoilerPlate);
-                }
+                writeData(`${test_id}-${uuidv4()}.pdf`, htmlBoilerPlate);
             });
         });
     });
