@@ -79,10 +79,7 @@ async function getAnswerNNA(rno) {
             for (var [i, j] of data.entries()) {
                 console.log(`[${i + 1}] ${j.TestName}`);
             }
-            if (rno === null) {
-                var selid = prompt('Select test to get answers: ');
-            }
-            else selid = 1;
+            var selid = prompt('Select test to get answers: ');
 
             var tid = data[selid - 1].TestId;
 

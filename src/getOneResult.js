@@ -13,12 +13,8 @@ async function getOneResult(rno = 12114478) {
             for (var [i, j] of data.entries()) {
                 console.log(`[${i+1}] ${j.TestName}`);
             }
-            if (rno === null) {
-                var selid = prompt('Select test to get marks: ');
-            }
-            else {
-                selid = 1;
-            }
+            var selid = prompt('Select test to get marks: ');
+
             parseOAS.fetch_result(data[selid-1].TestId, reg_no).then(redata => { 
                 console.log(redata);
             });

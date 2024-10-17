@@ -13,12 +13,7 @@ async function endTest(rno = 12114478) {
             for (var [i, j] of data.entries()) {
                 console.log(`[${i + 1}] ${j.TestName}`);
             }
-            if (rno === null) {
-                var selid = prompt('Select test to get marks: ');
-            }
-            else {
-                selid = 1;
-            }
+            var selid = prompt('Select test to get marks: ');
             var set = prompt("Enter set number: ");
             await parseOAS.fetch_endTest(data[selid-1], reg_no, set).then(async endtdata => {
                 if (endtdata == "-1") {
